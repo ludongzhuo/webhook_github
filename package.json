@@ -1,0 +1,14 @@
+{
+  "name": "webhook",
+  "version": "1.0.0",
+  "main": "webhooks.js",
+  "scripts": {
+    "start": "node webhooks.js"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "child-process": "^1.0.2",
+    "github-webhook-handler": "^1.0.0",
+    "http": "^0.0.1-security"
+  }
+}
