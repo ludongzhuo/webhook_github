@@ -7,12 +7,16 @@ function run_cmd(cmd, args, callback) {
   var spawn = require('child_process').spawn;
   var child = spawn(cmd, args);
   var resp = "";
+  var resp_err = "";
 
-  child.stdout.on('data', function (buffer) { resp += buffer.toString(); });
-  child.stderr.on('data', function (data) {
-    console.log('stderr: ' + data);
+  child.stdout.on('data', function (buffer) {
+    resp += buffer.toString();
+  });
+  child.stderr.on('data', function (buffer) {
+    resp_err += buffer.toString();
   });
   child.stdout.on('end', function () { callback(resp) });
+  child.stderr.on('end', function () { callback('stderr: ' + resp_err) });
 }
 
 http.createServer(function (req, res) {
